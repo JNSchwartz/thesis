@@ -12,28 +12,11 @@ jobs:
           root_file: |
             elteikthesis_en.tex
           latexmk_shell_escape: true
-      - name: Upload the compiled pdf
-        uses: actions/upload-artifact@v3
+
+# let the generated pdf be commited back to the repo 
+      - name: commit
+        run: git add . ; git commit -m "Add compiled pdf"
+      - name: push
+        uses: ad-m/github-push-action@master
         with:
-          name: thesis-pdflatex
-          path: |
-            elteikthesis_en.pdf
-          if-no-files-found: error
-      - name: Release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }} ${{ github.event.head_commit.message }}
-          draft: false
-          prerelease: false
-      - name: Upload 
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./elteikthesis_en.pdf
-          asset_name: elteikthesis_en.pdf
-          asset_content_type: pdf
+          github_token: ${{ secrets.GITHUB_TOKEN}}
