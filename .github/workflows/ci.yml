@@ -10,7 +10,7 @@ jobs:
         uses: xu-cheng/latex-action@v2
         with:
           root_file: |
-            thesi.tex
+            thesis.tex
           latexmk_shell_escape: true
 
 # read email and name from the secret
