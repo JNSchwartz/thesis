@@ -13,9 +13,13 @@ jobs:
             elteikthesis_en.tex
           latexmk_shell_escape: true
 
-# let the generated pdf be commited back to the repo 
+# read email and name from the secret
       - name: commit
-        run: git add . ; git commit -m "Add compiled pdf"
+        run: /
+          git config --global user.email ${{ secrets.EMAIL }}
+          git config --global user.name ${{ secrets.NAME }}
+          git add .
+          git commit -m "Add compiled pdf"
       - name: push
         uses: ad-m/github-push-action@master
         with:
