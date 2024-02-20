@@ -10,7 +10,6 @@ jobs:
         uses: xu-cheng/latex-action@v3
         with:
           root_file: thesis.tex
-          docker_image: ghcr.io/xu-cheng/texlive-small:latest
           latexmk_shell_escape: true
 
 # read email and name from the secret
