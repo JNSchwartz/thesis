@@ -12,7 +12,6 @@ jobs:
           root_file: thesis.tex
           latexmk_shell_escape: true
 
-# read email and name from the secretyo
       - name: commit
         run: git config --global user.email "${{ secrets.EMAIL }}" ;
           git config --global user.name "${{ secrets.NAME }}" ;
